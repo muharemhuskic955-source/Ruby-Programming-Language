@@ -1,0 +1,1 @@
+rails generate model Post user:references title:string content:text
