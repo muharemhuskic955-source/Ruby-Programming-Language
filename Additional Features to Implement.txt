@@ -1,0 +1,15 @@
+Additional Features to Implement
+For a complete social network, consider adding:
+Real-time messaging (ActionCable)
+Photo uploads (Active Storage)
+Likes functionality
+Privacy settings
+Notifications
+Search functionality
+Groups/communities
+Messaging system
+This foundation gives you a working social network with user registration, posting, news feed, and friend connections. You can expand it based on your specific requirements!
+Copy
+Ask Qwen
+Explain
+Translate(en-US)
