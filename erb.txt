@@ -1,0 +1,33 @@
+<div class="posts-container">
+  <div class="create-post">
+    <h2>Create New Post</h2>
+    <%= form_with model: @post, local: true do |form| %>
+      <div class="field">
+        <%= form.text_field :title, placeholder: "Post Title", required: true %>
+      </div>
+      <div class="field">
+        <%= form.text_area :content, placeholder: "What's on your mind?", rows: 4, required: true %>
+      </div>
+      <div class="actions">
+        <%= form.submit "Post", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="feed">
+    <h2>News Feed</h2>
+    <% @posts.each do |post| %>
+      <div class="post-card">
+        <div class="post-header">
+          <h3><%= link_to post.user.full_name, user_path(post.user) %></h3>
+          <small><%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %></small>
+        </div>
+        <div class="post-content">
+          <h4><%= post.title %></h4>
+          <p><%= post.content %></p>
+        </div>
+        <%= link_to "View Comments", post_path(post), class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
