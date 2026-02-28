@@ -1,0 +1,42 @@
+<!-- app/views/subscriptions/pricing.html.erb -->
+<div class="pricing-plans">
+  <div class="plan basic">
+    <h3>Free</h3>
+    <div class="price">$0<span>/month</span></div>
+    <ul>
+      <li>✓ Basic features</li>
+      <li>✓ Standard posts</li>
+      <li>✗ No ads removal</li>
+      <li>✗ Limited storage</li>
+    </ul>
+    <%= link_to "Get Started", signup_path, class: "btn btn-outline" %>
+  </div>
+
+  <div class="plan premium">
+    <h3>Premium</h3>
+    <div class="price">$9.99<span>/month</span></div>
+    <ul>
+      <li>✓ All basic features</li>
+      <li>✓ Ad-free experience</li>
+      <li>✓ Premium filters</li>
+      <li>✓ Advanced analytics</li>
+      <li>✓ Priority support</li>
+    </ul>
+    <%= button_to "Subscribe", subscriptions_path(plan_id: @premium_plan.id), 
+                   method: :post, class: "btn btn-primary" %>
+  </div>
+
+  <div class="plan business">
+    <h3>Business</h3>
+    <div class="price">$29.99<span>/month</span></div>
+    <ul>
+      <li>✓ All premium features</li>
+      <li>✓ Ad campaign access</li>
+      <li>✓ Analytics dashboard</li>
+      <li>✓ Creator tools</li>
+      <li>✓ Marketing insights</li>
+    </ul>
+    <%= button_to "Subscribe", subscriptions_path(plan_id: @business_plan.id), 
+                   method: :post, class: "btn btn-success" %>
+  </div>
+</div>
