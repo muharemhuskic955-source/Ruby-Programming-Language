@@ -1,0 +1,60 @@
+<!-- app/views/posts/index.html.erb (enhanced) -->
+<div class="posts-container">
+  <div class="create-post">
+    <h2>Create New Post</h2>
+    <%= form_with model: @post, local: true do |form| %>
+      <div class="field">
+        <%= form.text_field :title, placeholder: "Post Title", required: true %>
+      </div>
+      <div class="field">
+        <%= form.text_area :content, placeholder: "What's on your mind?", rows: 4, required: true %>
+      </div>
+      
+      <!-- Image upload -->
+      <div class="field">
+        <%= form.file_field :images, multiple: true, accept: "image/*" %>
+      </div>
+      
+      <div class="actions">
+        <%= form.submit "Post", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="feed">
+    <h2>News Feed</h2>
+    <% @posts.each do |post| %>
+      <div class="post-card">
+        <div class="post-header">
+          <h3><%= link_to post.user.full_name, user_path(post.user) %></h3>
+          <small><%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %></small>
+        </div>
+        
+        <div class="post-content">
+          <h4><%= post.title %></h4>
+          <p><%= post.content %></p>
+          
+          <!-- Display images if any -->
+          <% if post.images.any? %>
+            <div class="post-images">
+              <% post.image_urls.each do |url| %>
+                <%= image_tag url, style: "max-width: 100%; margin: 10px 0;" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="post-actions">
+          <!-- Like button -->
+          <%= button_to post_likes_path(post), 
+                        method: :post, 
+                        class: "btn btn-like #{'liked' if post.liked_by?(current_user)}" do %>
+            ❤️ Like (<%= post.like_count %>)
+          <% end %>
+          
+          <%= link_to "Comments", post_path(post), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
